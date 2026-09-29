@@ -1,0 +1,32 @@
+import java.io.*;
+import java.security.*;
+import java.util.*;
+public class Task11 {
+	private static Scanners = new Scanner(System.in);
+	public static void main(String[] args) {
+		try {
+			// Generating key pair (public and private keys)
+			KeyPairGenerator keyGen = KeyPairGenerator.getInstance("DSA");
+			keyGen.initialize(1024);
+			KeyPair keyPair = keyGen.generateKeyPair();
+			PrivateKey privateKey = keyPair.getPrivate();
+			PublicKey publicKey = keyPair.getPublic();
+			// Sample data to be signed
+			String data = s.nextLine();
+			byte[] dataBytes = data.getBytes();
+			// Signing the data
+			Signature signature = Signature.getInstance("SHA256withDSA");
+			signature.initSign(privateKey); // Initialize for signing
+			signature.update(dataBytes); // Add data
+			byte[] digitalSignature = signature.sign(); // Generate the digital signature
+			System.out.println("DigitalSignature:"+Base64.getEncoder().encodeToString(digitalSignature));
+			// Verifying the signature
+			signature.initVerify(publicKey); // Initialize for verification
+			signature.update(dataBytes); // Add data to be verified
+			boolean isVerified = signature.verify(digitalSignature); // Verify the signature
+			System.out.println("Signature Verified: " + isVerified);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
