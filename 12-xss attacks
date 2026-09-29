@@ -1,0 +1,13 @@
+import java.util.scanner;
+import org.apache.commons.text.StringEscapeUtils;
+public class XSSDemo {
+	public static void main(string[ ] args) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter your comment");
+		String userinput= scanner.nextLine();
+		System.out.println("without xss protection user inputs is..."+userinput);
+		String safeinput= StringEscapeUtils.escapeHtml4(userinput);
+		System.out.println("with xss protection safe user inputs is.."+safeinput);
+		scanner.close();
+	}
+}
